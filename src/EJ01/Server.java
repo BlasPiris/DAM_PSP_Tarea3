@@ -17,35 +17,38 @@ import java.util.logging.Logger;
  *
  * @author bpiris
  */
-public class Server {
+public class Server extends Thread{
     
     //VARIABLES DEL SERVIDOR
     static int PORT=2000;
     static private Socket socket;
     static int idUser=0;
+    
+    Server(Socket socket){
+        this.socket=socket;
+    }
 
     public static void main (String[] args) throws IOException{
         
+   
         //INICIALIZAMOS EL SOCKET
+        Socket newSocket;
         ServerSocket server=new ServerSocket(PORT);
         System.out.println("Servidor Iniciado");
        
-        
         //SI ESTA DISPONIBLE EL SERVICIO DEL SOCKET, PERMITIRÁ ACCESO A NUEVO CLIENTE
         //A LA APLICACION DEL SERVER
         while(true){
+        newSocket=server.accept();
+        new Server(newSocket).start();
         idUser++;
-        socket=server.accept();
         System.out.println("Cliente "+idUser+" conectado");
-        serverMethod(idUser);
-        
         }
         
     }
   
-  
     //METODO QUE SE EJECUTARÁ TODA LA APLICACION DEL SERVIDOR
-    public static void serverMethod(int idUser){
+    public  void run(){
         try {
             
            //VARIABLE BOOLEANA PARA SALIR DEL WHILE Y CERRAR CONEXION CON SOCKET
@@ -96,7 +99,7 @@ public class Server {
             
             //CUANDO ACABE EL PROGRAMA, CERRAMOS EL SOCKET
             
-            socket.close();
+            //socket.close();
             
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
