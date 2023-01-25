@@ -4,7 +4,6 @@
  */
 package EJ02;
 
-import EJ01.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;

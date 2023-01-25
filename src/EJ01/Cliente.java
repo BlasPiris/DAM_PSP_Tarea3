@@ -45,6 +45,11 @@ public class Cliente  {
            System.out.println(text);
            
            //INTRODUCIMOS EL NUMERO Y SE LO ENVIAMOS AL SERVIDOR
+           
+            while (!sc.hasNextInt()) {
+                System.out.println(text);
+                sc.next(); 
+           }
            int num=sc.nextInt();
            out.writeInt(num);
            

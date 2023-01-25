@@ -17,6 +17,8 @@ import java.util.logging.Logger;
  *
  * @author bpiris
  */
+
+//AÑADIMOS THREAD PARA FUNCIONAR CON HILOS
 public class Server extends Thread{
     
     //VARIABLES DEL SERVIDOR
@@ -24,6 +26,7 @@ public class Server extends Thread{
     static private Socket socket;
     static int idUser=0;
     
+    //METODO PARA GENERAR UN NUEVO SOCKET
     Server(Socket socket){
         this.socket=socket;
     }
@@ -78,11 +81,23 @@ public class Server extends Thread{
                 //SI EL NUMERO NO ES IGUAL, INDICAREMOS SI ES MAYOR O MENOR
                 
                 if(num!=randomNumber){
-                   if(num<randomNumber){
-                        out.writeUTF("El numero insertado es Menor");
-                   }else{
-                        out.writeUTF("El numero insertado es Mayor");
-                   }
+                 if(num>=0 && num<=100){
+                     
+                     if(num<randomNumber){
+                         out.writeUTF("El numero insertado es menor");
+                     }else{
+                         out.writeUTF("El numero insertado es mayor");
+                     }
+                 
+                 }else{
+                     
+                     if(num<0){
+                         out.writeUTF("El numero insertado debe ser mayor a 0");
+                     }else{
+                         out.writeUTF("El numero insertado debe ser menor a 100 ");
+                     }
+                 
+                 }
                    
                 //SI EL NUMERO ES EL MISMO, DEVOLVEMOS EL MENSAJE 
                 //Y CAMBIAMOS EL BOOLEANO A TRUE

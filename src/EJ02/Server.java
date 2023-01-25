@@ -19,6 +19,7 @@ import java.util.logging.Logger;
  *
  * @author bpiris
  */
+//AÑADIMOS THREAD PARA FUNCIONAR CON HILOS
 public class Server extends Thread {
     
     //VARIABLES DEL SERVIDOR
